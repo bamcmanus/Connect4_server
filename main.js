@@ -47,7 +47,7 @@ function makeMove(myClass) {
 };
 
 function checkWinner(lastCol) {
-    if (is_winner_vert(lastCol) || is_winner_horiz(lastCol)) {
+    if (is_winner_vert(lastCol) || is_winner_horiz(lastCol) || is_winner_diagl(lastCol)) {
         return true;
     }
     return false;
@@ -78,28 +78,64 @@ function is_winner_vert(lastCol) {
 function is_winner_horiz(lastCol) {
     let count = 1;
     for (let i = 0; i < ROWS; i++) {
-        if(boardMap[i][lastCol] != 0){
-            for(let j = lastCol + 1; j < COLS; j++) {
-                if(boardMap[i][j] === boardMap[i][lastCol]){
+        if (boardMap[i][lastCol] != 0) {
+            for (let j = lastCol + 1; j < COLS; j++) {
+                if (boardMap[i][j] === boardMap[i][lastCol]) {
                     count++;
                 }
-                else{
+                else {
                     break;
                 }
             }
-            for( let j = lastCol - 1 ; j >= 0; j--) {
-                if(boardMap[i][j] === boardMap[i][lastCol]){
+            for (let j = lastCol - 1; j >= 0; j--) {
+                if (boardMap[i][j] === boardMap[i][lastCol]) {
                     count++;
                 }
-                else{
+                else {
                     break;
                 }
             }
             break;
         }
     }
-    if(count >= 4){
+    if (count >= 4) {
         return true;
+    }
+    return false;
+}
+
+function is_winner_diagl(lastCol) {
+    let count = 1;
+    var piece;
+    for (let i = ROWS - 1; i >= 0; i--) {
+        if (boardMap[i][lastCol] == 0) {
+            let row = i + 1;
+            let cols = lastCol;
+            piece = boardMap[i + 1][lastCol];
+            do {
+                row++;
+                cols--;
+                if (row < ROWS && cols >= 0) {
+                    if (boardMap[row][cols] === piece) {
+                        count++;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+            while (boardMap[row][cols] == piece);
+
+            if (count >= 4) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
     return false;
 }
