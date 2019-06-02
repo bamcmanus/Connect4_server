@@ -60,7 +60,7 @@ function is_winner_vert(lastCol) {
             for (let j = i + 1; j < ROWS; j++) {
                 if (boardMap[j][lastCol] == boardMap[i][lastCol]) {
                     count++;
-                    console.log(boardMap[j][lastCol] + ' is first and ' + boardMap[i][lastCol] + ' is second and count is ' + count)
+                    console.log(j + ' is row and ' + i + ' is column and count is ' + count + ' and lastCol is ' + lastCol)
                 }
                 else {
                     break;
