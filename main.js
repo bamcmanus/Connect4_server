@@ -105,20 +105,65 @@ function is_winner_horiz(lastCol) {
 }
 
 function is_winner_diagl(lastCol) {
-    let count = 1;
+    var count = 1;
     var piece;
-    for (let i = ROWS - 1; i >= 0; i--) {
-        if (boardMap[i][lastCol] == 0) {
-            let row = i + 1;
-            let cols = lastCol;
+    for (let i = ROWS - 1; i >= 0; --i)
+    {
+        if (boardMap[i][lastCol] === 0) {
+            var row = i + 1;
+            var cols = lastCol;
             piece = boardMap[i + 1][lastCol];
+
             do {
                 row++;
                 cols--;
                 if (row < ROWS && cols >= 0) {
-                    if (boardMap[row][cols] === piece) {
+                    if (boardMap[row][cols] === piece)
+                        ++count;
+                    else break;
+                }
+                else break;
+            } while (boardMap[row][cols] === piece);
+
+            row = i + 1;
+            cols = lastCol;
+
+            do {
+                row--;
+                cols++;
+                if (row >= 0 && cols < COLS) {
+                    if (boardMap[row][cols] === piece)
+                        ++count;
+                    else break;
+                }
+                else break;
+            } while (boardMap[row][cols] === piece);
+
+            if (count >= 4)
+                return true;
+            else
+                return false;
+        }
+    }
+    return false;
+}
+
+
+function is_winner_rdiag(lastCol) {
+    var count = 1;
+    var piece;
+    for (let i = ROWS - 1; i >= 0; i--) {
+        if (boardMap[i][lastCol] === 0) {
+            var row = i + 1;
+            var cols = col;
+            piece = boardMap[i + 1][lastCol];
+
+            do {
+                row++;
+                cols++;
+                if (row < ROWS && cols < COLS) {
+                    if (boardMap[row][cols] === piece)
                         count++;
-                    }
                     else {
                         break;
                     }
@@ -126,8 +171,25 @@ function is_winner_diagl(lastCol) {
                 else {
                     break;
                 }
-            }
-            while (boardMap[row][cols] == piece);
+            } while (boardMap[row][cols] === piece);
+
+            row = i + 1;
+            cols = lastCol;
+
+            do {
+                row--;
+                cols--;
+                if (row > -1 && cols > -1) {
+                    if (boardMap[row][cols] === piece)
+                        count++;
+                    else {
+                        break;
+                    }
+                }
+                else {
+                    break;
+                }
+            } while (boardMap[row][cols] === piece);
 
             if (count >= 4) {
                 return true;
@@ -139,6 +201,7 @@ function is_winner_diagl(lastCol) {
     }
     return false;
 }
+
 function gameOver() {
     if (player === 'Black') {
         alert('Game over, red wins!');
