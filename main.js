@@ -47,7 +47,7 @@ function makeMove(myClass) {
 };
 
 function checkWinner(lastCol) {
-    if (is_winner_vert(lastCol) || is_winner_horiz(lastCol) || is_winner_diagl(lastCol)) {
+    if (is_winner_vert(lastCol) || is_winner_horiz(lastCol) || is_winner_diagl(lastCol) || is_winner_diagr(lastCol)) {
         return true;
     }
     return false;
@@ -149,13 +149,13 @@ function is_winner_diagl(lastCol) {
 }
 
 
-function is_winner_rdiag(lastCol) {
+function is_winner_diagr(lastCol) {
     var count = 1;
     var piece;
     for (let i = ROWS - 1; i >= 0; i--) {
         if (boardMap[i][lastCol] === 0) {
             var row = i + 1;
-            var cols = col;
+            var cols = lastCol;
             piece = boardMap[i + 1][lastCol];
 
             do {
