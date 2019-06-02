@@ -54,18 +54,19 @@ function checkWinner(lastCol) {
 };
 
 function is_winner_vert(lastCol) {
-    let count = 0;
+    let count = 1;
     for (let i = 0; i < ROWS; i++) {
         if (boardMap[i][lastCol] === 1 || boardMap[i][lastCol] === 2) {
             for (let j = i + 1; j < ROWS; j++) {
                 if (boardMap[j][lastCol] == boardMap[i][lastCol]) {
                     count++;
-                    console.log(j + ' is row and ' + i + ' is column and count is ' + count + ' and lastCol is ' + lastCol)
+                    console.log(j + ' is first and ' + i + ' is second and count is ' + count + ' and lastCol is ' + lastCol)
                 }
                 else {
                     break;
                 }
             }
+            break;
         }
     }
     if (count >= 4) {
