@@ -47,7 +47,7 @@ function makeMove(myClass) {
 };
 
 function checkWinner(lastCol) {
-    if (is_winner_vert(lastCol)) {
+    if (is_winner_vert(lastCol) || is_winner_horiz(lastCol)) {
         return true;
     }
     return false;
@@ -70,6 +70,35 @@ function is_winner_vert(lastCol) {
         }
     }
     if (count >= 4) {
+        return true;
+    }
+    return false;
+}
+
+function is_winner_horiz(lastCol) {
+    let count = 1;
+    for (let i = 0; i < ROWS; i++) {
+        if(boardMap[i][lastCol] != 0){
+            for(let j = lastCol + 1; j < COLS; j++) {
+                if(boardMap[i][j] === boardMap[i][lastCol]){
+                    count++;
+                }
+                else{
+                    break;
+                }
+            }
+            for( let j = lastCol - 1 ; j >= 0; j--) {
+                if(boardMap[i][j] === boardMap[i][lastCol]){
+                    count++;
+                }
+                else{
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    if(count >= 4){
         return true;
     }
     return false;
