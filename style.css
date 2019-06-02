@@ -8,47 +8,7 @@ table {
     background-color: yellow;
 }
 
-.col0 {
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    background-color: white;
-    border-radius: 50%;
-    margin: 5px;
-}
-.col1 {
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    background-color: white;
-    border-radius: 50%;
-    margin: 5px;
-}
-.col2 {
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    background-color: white;
-    border-radius: 50%;
-    margin: 5px;
-}
-.col3 {
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    background-color: white;
-    border-radius: 50%;
-    margin: 5px;
-}
-.col4 {
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    background-color: white;
-    border-radius: 50%;
-    margin: 5px;
-}
-.col5 {
+td {
     width: 70px;
     height: 70px;
     display: inline-block;
@@ -57,11 +17,10 @@ table {
     margin: 5px;
 }
 
-.col6 {
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    background-color: white;
-    border-radius: 50%;
-    margin: 5px;
+.red {
+    background-color: red;
+}
+
+.black {
+    background-color: black;
 }
