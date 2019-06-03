@@ -158,6 +158,7 @@ bool Board::is_draw()
 	return true;
 }
 
+
 // Evaluates a 4x4 section of the board and returns a heuristic score for a given piece
 int Board::evaluate_window(const vector<int> window, const int piece)
 {
